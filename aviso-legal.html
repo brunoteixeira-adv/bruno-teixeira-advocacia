@@ -151,5 +151,15 @@
     <span class="whatsapp-label">Falar no WhatsApp</span>
   </a>
   <script src="script.js"></script>
+  <script>
+  fetch("_config/perfil.json")
+    .then(r => r.json())
+    .then(config => {
+      if (config.logo) {
+        var logoImg = document.getElementById("logo-img");
+        if (logoImg) logoImg.src = config.logo;
+      }
+    }).catch(function(){});
+  </script>
 </body>
 </html>
