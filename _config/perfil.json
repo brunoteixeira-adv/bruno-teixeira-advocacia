@@ -1,11 +1,11 @@
 {
-  "logo": "/imagens/logo.png",
-  "favicon": "/favicon.ico",
-  "foto_sobre": "foto-bruno.jpg",
-  "nome": "Bruno Teixeira",
-  "oab": "OAB/BA Nº 71.102",
-  "telefone": "5587988181818",
   "endereco": "Galeria Manhattan Center, Sl. 403, Centro - Petrolina, PE",
-  "email": "bruno@gmail.com",
-  "instagram": "brunoteixeiras.adv"
+  "telefone": "5574988561132",
+  "logo": "/imagens/logo.png",
+  "oab": "OAB/BA Nº 71.102",
+  "instagram": "brunoteixeiras.adv",
+  "favicon": "/imagens/logo-bruno-.jpeg",
+  "nome": "Bruno Teixeira",
+  "email": "escritoriobrunoteixeira@gmail.com",
+  "foto_sobre": "/imagens/foto-bruno.jpeg"
 }
