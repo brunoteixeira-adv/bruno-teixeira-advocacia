@@ -188,7 +188,7 @@
 
     // Simular envio (substitua por fetch para integração real)
     try {
-      await simulateFormSubmit({
+      await submitForm({
         nome:     document.getElementById('nome').value.trim(),
         email:    document.getElementById('email').value.trim(),
         telefone: document.getElementById('telefone').value.trim(),
@@ -217,15 +217,18 @@
    *   - Web3Forms: fetch('https://api.web3forms.com/submit', ...)
    *   - EmailJS: emailjs.send(...)
    */
-  function simulateFormSubmit(data) {
-    console.log('Dados do formulário:', data);
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // Simula 95% de sucesso
-        Math.random() > 0.05 ? resolve() : reject(new Error('Falha simulada'));
-      }, 1500);
-    });
-  }
+  function submitForm(data) {
+  return fetch('https://script.google.com/macros/s/AKfycbzTzAUCsFeUPxA0k0smqCot0JaJW0NIC36TVwhkt5vEURdHq9dsOT30VAB7Kxa98OqX/exec', {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(data)
+  }).then(r => {
+    if (!r.ok) throw new Error('Erro no envio');
+    return r.json();
+  }).then(json => {
+    if (!json.ok) throw new Error('Erro retornado pelo servidor');
+  });
+}
 })();
 
 // ── SMOOTH SCROLL para links âncora ──────────────────────────
