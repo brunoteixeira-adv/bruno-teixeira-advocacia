@@ -111,7 +111,7 @@
               />
               <div class="sobre-badge-float">
                 <span class="badge-number">OAB/BA</span>
-                <span class="badge-text">Nº 71.020</span>
+                <span class="badge-text">Nº 71.102</span>
               </div>
             </div>
           </div>
@@ -575,5 +575,14 @@
       if (logoText) logoText.style.display = 'block';
     });
   </script>
+
+  <!-- Netlify Identity redirect -->
+  <script>
+    if (window.location.hash && window.location.hash.includes('invite_token')) {
+      window.location = '/admin/index.html' + window.location.hash;
+    }
+  </script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
 </body>
 </html>

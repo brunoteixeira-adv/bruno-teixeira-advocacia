@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-site_url: https://bruno-teixeira-advocacia.netlify.app
-display_url: https://bruno-teixeira-advocacia.netlify.app
+site_url: https://bruno-teixeira-adv-site.netlify.app
+display_url: https://bruno-teixeira-adv-site.netlify.app
 
 media_folder: imagens
 public_folder: /imagens
