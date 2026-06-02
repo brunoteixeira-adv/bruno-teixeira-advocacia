@@ -218,15 +218,22 @@
    *   - EmailJS: emailjs.send(...)
    */
   function submitForm(data) {
-  return fetch('https://script.google.com/macros/s/AKfycbzTzAUCsFeUPxA0k0smqCot0JaJW0NIC36TVwhkt5vEURdHq9dsOT30VAB7Kxa98OqX/exec', {
+  console.log('Enviando dados:', data);
+  return fetch('https://script.google.com/macros/s/AKfycbwWTztETufebCHunvx4G1EDg-qKaih8eVKvxVgJEOcM5_0vlhVzfvPRyz6DMARCx2PCnQ/exec', {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(data)
-  }).then(r => {
-    if (!r.ok) throw new Error('Erro no envio');
-    return r.json();
-  }).then(json => {
-    if (!json.ok) throw new Error('Erro retornado pelo servidor');
+  })
+  .then(r => {
+    console.log('Status HTTP:', r.status);
+    return r.text();
+  })
+  .then(text => {
+    console.log('Resposta bruta:', text);
+    const json = JSON.parse(text);
+    console.log('Resposta JSON:', json);
+    console.log('Log do servidor:', json.log);
+    if (!json.ok) throw new Error(json.erro || 'Erro desconhecido');
   });
 }
 })();
