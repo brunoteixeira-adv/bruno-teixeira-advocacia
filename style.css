@@ -190,6 +190,20 @@ ul { list-style: none; }
   text-transform: uppercase;
 }
 
+/* brasao do cabecalho — acompanha a altura da navbar */
+.logo-mark {
+  height: 64px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  transition: height 0.4s ease;
+}
+.navbar.scrolled .logo-mark { height: 52px; }
+@media (max-width: 768px) {
+  .logo-mark { height: 52px; }
+  .navbar.scrolled .logo-mark { height: 46px; }
+}
+
 .nav-links {
   display: flex;
   align-items: center;
