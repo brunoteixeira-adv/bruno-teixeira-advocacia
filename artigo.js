@@ -83,6 +83,45 @@ async function carregarArtigo() {
 
     document.title = `${artigo.title} | Bruno Teixeira Advocacia`;
     document.getElementById('pageDesc').content        = artigo.resumo;
+
+    // SEO do artigo: compartilhamento, canonical e dados estruturados
+    const urlArtigo = `https://bteixeirasadv.com.br/artigo.html?slug=${slug}`;
+    const ogTitle = document.getElementById('ogTitle');
+    const ogDesc  = document.getElementById('ogDesc');
+    if (ogTitle) ogTitle.content = `${artigo.title} | Bruno Teixeira Advocacia`;
+    if (ogDesc)  ogDesc.content  = artigo.resumo;
+
+    const canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    canonical.href = urlArtigo;
+    document.head.appendChild(canonical);
+
+    const ogUrl = document.createElement('meta');
+    ogUrl.setAttribute('property', 'og:url');
+    ogUrl.content = urlArtigo;
+    document.head.appendChild(ogUrl);
+
+    const dados = document.createElement('script');
+    dados.type = 'application/ld+json';
+    dados.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: artigo.title,
+      description: artigo.resumo,
+      datePublished: artigo.date,
+      inLanguage: 'pt-BR',
+      mainEntityOfPage: urlArtigo,
+      image: artigo.capa
+        ? `https://bteixeirasadv.com.br${artigo.capa}`
+        : 'https://bteixeirasadv.com.br/imagens/foto-bruno.jpeg',
+      author: { '@type': 'Person', name: 'Bruno Teixeira', jobTitle: 'Advogado' },
+      publisher: {
+        '@type': 'LegalService',
+        name: 'Bruno Teixeira Advocacia',
+        url: 'https://bteixeirasadv.com.br',
+      },
+    });
+    document.head.appendChild(dados);
     document.getElementById('artigo-titulo').textContent      = artigo.title;
     document.getElementById('breadcrumb-titulo').textContent  = artigo.title.substring(0, 40) + (artigo.title.length > 40 ? '…' : '');
     document.getElementById('artigo-cat').textContent         = CATEGORIAS[artigo.categoria] || artigo.categoria;

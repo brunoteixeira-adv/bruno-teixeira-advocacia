@@ -262,3 +262,25 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+// ── LOGO E ÍCONES vindos do CMS (_config/perfil.json) ────────
+// Vale para todas as páginas: o que o Bruno enviar pelo Decap
+// substitui a logo do cabeçalho e todos os ícones do navegador.
+fetch('/_config/perfil.json')
+  .then(r => r.json())
+  .then(config => {
+    if (config.logo) {
+      document.querySelectorAll('#logo-img, .logo-mark').forEach(img => {
+        img.src = config.logo;
+      });
+    }
+    if (config.favicon) {
+      document.querySelectorAll("link[rel='icon'], link[rel='apple-touch-icon']").forEach(link => {
+        link.href = config.favicon;
+        // o arquivo enviado pode ser png, jpeg ou ico — deixa o navegador decidir
+        link.removeAttribute('type');
+        link.removeAttribute('sizes');
+      });
+    }
+  })
+  .catch(() => {});

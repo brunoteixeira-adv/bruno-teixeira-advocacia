@@ -22,13 +22,19 @@ collections:
             name: logo
             widget: image
             required: false
-            hint: "PNG com fundo transparente. Aparece no menu do site."
+            hint: >-
+              Envie SÓ o brasão, sem o texto embaixo e sem margem sobrando em
+              volta — PNG com fundo transparente. O site exibe a imagem com 64px
+              de altura; se ela vier com o texto dentro, o brasão fica minúsculo.
 
           - label: "Favicon (ícone da aba do navegador)"
             name: favicon
             widget: image
             required: false
-            hint: "PNG quadrado 64x64px. Aparece na aba do navegador."
+            hint: >-
+              Imagem quadrada (128x128px ou mais), PNG. Aparece na aba do
+              navegador e no ícone de tela inicial do celular. Como fica bem
+              pequeno, use só o brasão — de preferência sobre fundo escuro.
 
           - label: "Foto Principal (Seção Sobre)"
             name: foto_sobre
