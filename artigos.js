@@ -89,9 +89,13 @@ function parseMarkdown(texto, arquivo) {
   const body = texto.replace(/^---[\s\S]*?---\n/, '').trim();
 
   function getField(field) {
-    const re = new RegExp(`^${field}:\\s*["']?(.+?)["']?\\s*$`, 'm');
+    // campos vazios do CMS chegam como aspas vazias (capa: "") — sem tratar
+    // isso, o valor virava o proprio caractere de aspas
+    const re = new RegExp(`^${field}:\\s*(?:"([^"]*)"|'([^']*)'|(.*))\\s*$`, 'm');
     const m = frontmatter.match(re);
-    return m ? m[1].trim() : '';
+    if (!m) return '';
+    const valor = m[1] !== undefined ? m[1] : m[2] !== undefined ? m[2] : m[3];
+    return (valor || '').trim();
   }
 
   return {
