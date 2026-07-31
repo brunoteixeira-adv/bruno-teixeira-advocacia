@@ -208,24 +208,23 @@ Em ordem de retorno sobre esforço.
 
 ### Alta prioridade
 
-1. **Divergência no número da OAB.** O site usa **71.102** (perfil.json, dados estruturados, seção Sobre) e **71.020** no `aviso-legal.html` e na `privacidade.html`. Um dos dois está errado em documento de valor legal. Definir o correto e uniformizar.
-2. **Sitemap não inclui artigos.** É um arquivo fixo com as 5 páginas principais. Artigo novo só é descoberto pelo link da página de artigos. Solução: script de build que varre `artigos/*.md` e regenera o `sitemap.xml` (≈1 hora de trabalho).
-3. **A lista de artigos depende da API pública do GitHub.** O `artigos.js` consulta `api.github.com` a cada visita — limite de 60 requisições por hora por IP, e o endereço configurado (`ailtonupe/…`) é o nome **antigo** do repositório, funcionando apenas pelo redirecionamento que o GitHub mantém. Se alguém criar um repositório com o nome antigo, a lista quebra. Solução: gerar um `artigos/index.json` no build (mesmo script do item 2) e ler dele.
-4. **Formulário sem proteção anti-spam.** Não há honeypot nem reCAPTCHA. Robôs acham formulários públicos rapidamente.
+1. **Sitemap não inclui artigos.** É um arquivo fixo com as 5 páginas principais. Artigo novo só é descoberto pelo link da página de artigos. Solução: script de build que varre `artigos/*.md` e regenera o `sitemap.xml` (≈1 hora de trabalho).
+2. **A lista de artigos depende da API pública do GitHub.** O `artigos.js` consulta `api.github.com` a cada visita — limite de 60 requisições por hora por IP, e o endereço configurado (`ailtonupe/…`) é o nome **antigo** do repositório, funcionando apenas pelo redirecionamento que o GitHub mantém. Se alguém criar um repositório com o nome antigo, a lista quebra. Solução: gerar um `artigos/index.json` no build (mesmo script do item 1) e ler dele.
+3. **Formulário sem proteção anti-spam.** Não há honeypot nem reCAPTCHA. Robôs acham formulários públicos rapidamente.
 
 ### Média prioridade
 
-5. **Páginas por área de atuação.** Hoje as seis áreas são cards em uma seção. Uma página própria por área ("Advogado Previdenciário", "Direito Bancário") é a forma clássica de disputar busca fora da cidade — é o item de maior impacto em SEO neste momento.
-6. **Imagens sem `loading="lazy"`** em nenhuma página, e o `imagens/logo.png` (802 KB) ficou órfão após a troca da logo — pode ser removido.
-7. **Sem página 404 personalizada.** Endereço errado devolve a página padrão da Netlify.
-8. **`vercel.json` e `.vercel/`** são resquícios de uma hospedagem anterior. Removê-los evita confusão futura.
-9. **Fontes do Google carregadas de servidor externo**, bloqueando a renderização. Servir localmente melhora o tempo de carregamento.
+4. **Páginas por área de atuação.** Hoje as seis áreas são cards em uma seção. Uma página própria por área ("Advogado Previdenciário", "Direito Bancário") é a forma clássica de disputar busca fora da cidade — é o item de maior impacto em SEO neste momento.
+5. **Imagens sem `loading="lazy"`** em nenhuma página, e o `imagens/logo.png` (802 KB) ficou órfão após a troca da logo — pode ser removido.
+6. **Sem página 404 personalizada.** Endereço errado devolve a página padrão da Netlify.
+7. **`vercel.json` e `.vercel/`** são resquícios de uma hospedagem anterior. Removê-los evita confusão futura.
+8. **Fontes do Google carregadas de servidor externo**, bloqueando a renderização. Servir localmente melhora o tempo de carregamento.
 
 ### Baixa prioridade
 
-10. **Editorial workflow do Decap** — hoje o CMS publica direto na `main`, sem revisão. Ativar o modo de rascunho permite escrever sem publicar.
-11. **Acessibilidade** — auditar contraste, textos alternativos e navegação por teclado.
-12. **Backup do Apps Script do formulário** — não está versionado neste repositório.
+9. **Editorial workflow do Decap** — hoje o CMS publica direto na `main`, sem revisão. Ativar o modo de rascunho permite escrever sem publicar.
+10. **Acessibilidade** — auditar contraste, textos alternativos e navegação por teclado.
+11. **Backup do Apps Script do formulário** — não está versionado neste repositório.
 
 ## 13. Trabalho já realizado (julho/2026)
 
@@ -239,6 +238,7 @@ Em ordem de retorno sobre esforço.
 - Alinhamento do parágrafo das seções corrigido
 - SEO: título, descrição, canonical, Open Graph, Twitter Card, `Attorney` nos dados estruturados e `Article` por artigo
 - Correção do bug que exibia uma imagem quebrada em artigos sem capa
+- Número da OAB uniformizado em **71.102** (o Aviso Legal e a Política de Privacidade traziam 71.020)
 
 ---
 
